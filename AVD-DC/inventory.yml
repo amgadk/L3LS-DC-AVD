@@ -40,10 +40,6 @@ all:
               ansible_host: 10.18.166.254
             dc1-spine2:
               ansible_host: 10.18.159.179
-            dc1-spine3:
-              ansible_host: 10.18.159.76
-            dc1-spine4:
-              ansible_host: 10.18.144.138
         LEAFS:
           vars: 
             type: l3leaf
