@@ -77,13 +77,13 @@ all:
                 dc2-leaf2:
                   ansible_host: 10.18.170.262
                 dc2-leaf3:
-                  ansible_host: 10.18.170.308
+                  ansible_host: 10.18.170.208
                 dc2-leaf4:
                   ansible_host: 10.18.170.259
                 dc2-borderleaf1:
-                  ansible_host: 10.18.170.303
+                  ansible_host: 10.18.170.203
                 dc2-borderleaf2:
-                  ansible_host: 10.18.170.309
+                  ansible_host: 10.18.170.209
 
     EVPN_SERVICES:
       children:
