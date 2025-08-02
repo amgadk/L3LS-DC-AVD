@@ -1,0 +1,95 @@
+---
+all:
+  children:
+    CVP_cluster:
+      vars:
+          ansible_user: arista
+          ansible_password: "Arista123!"
+          ansible_connection: httpapi
+          ansible_httpapi_use_ssl: false
+          ansible_httpapi_validate_certs: False
+          ansible_network_os: eos
+          ansible_httpapi_port: 443
+      hosts: 
+        cvp1:
+          ansible_httpapi_host: 10.18.170.160
+          ansible_host: 10.18.170.160
+    FABRIC:
+      vars:
+        ansible_user: arista
+        ansible_ssh_pass: "Arista123!"
+# Use this section if you want to perform testing via the eAPI
+        ansible_connection: httpapi
+        ansible_httpapi_use_ssl: True
+        ansible_httpapi_validate_certs: False
+        ansible_network_os: eos
+        ansible_httpapi_port: 443
+        ansible_become: yes
+        ansible_become_method: enable
+# Use this section if you want to perform testing via the CLI through SSH
+        # ansible_connection: network_cli
+        # ansible_network_os: eos
+        # ansible_become: yes
+        # ansible_become_method: enable
+      children:
+        DC1:
+          children:
+            DC1_SPINES:
+              vars:
+                type: spine
+              hosts:
+                dc1-spine1:
+                  ansible_host: 10.18.170.157
+                dc1-spine2:
+                  ansible_host: 10.18.170.165
+            DC1_LEAVES:
+              vars: 
+                type: l3leaf
+              hosts:
+                dc1-leaf1:
+                  ansible_host: 10.18.170.158
+                dc1-leaf2:
+                  ansible_host: 10.18.170.162
+                dc1-leaf3:
+                  ansible_host: 10.18.170.208
+                dc1-leaf4:
+                  ansible_host: 10.18.170.159
+                dc1-borderleaf1:
+                  ansible_host: 10.18.170.203
+                dc1-borderleaf2:
+                  ansible_host: 10.18.170.209
+        DC2:
+          children:
+            DC2_SPINES:
+              vars:
+                type: spine
+              hosts:
+                dc2-spine1:
+                  ansible_host: 10.18.170.257
+                dc2-spine2:
+                  ansible_host: 10.18.170.265
+            DC2_LEAVES:
+              vars: 
+                type: l3leaf
+              hosts:
+                dc2-leaf1:
+                  ansible_host: 10.18.170.258
+                dc2-leaf2:
+                  ansible_host: 10.18.170.262
+                dc2-leaf3:
+                  ansible_host: 10.18.170.308
+                dc2-leaf4:
+                  ansible_host: 10.18.170.259
+                dc2-borderleaf1:
+                  ansible_host: 10.18.170.303
+                dc2-borderleaf2:
+                  ansible_host: 10.18.170.309
+
+    EVPN_SERVICES:
+      children:
+        DC1_LEAVES:
+        DC2_LEAVES:
+    ENDPOINT_CONNECT:
+      children:
+        DC1_LEAVES:
+        DC2_LEAVES:
