@@ -54,13 +54,21 @@ l3leaf:
           mgmt_ip: 192.168.0.204/24
           uplink_switch_interfaces: [Ethernet6, Ethernet6]
     - group: borderleafs
-      bgp_as: 65260 # Overriden automatic allocation for host4/R1 peering
+      bgp_as: 65199 # Overriden automatic allocation for host4/R1 peering
       nodes:
-        - name: dc2-borderleaf1
-          id: 27
-          mgmt_ip: 192.168.0.205/24
+        - name: dc1-borderleaf1
+          id: 17
+          mgmt_ip: 192.168.0.105/24
           uplink_switch_interfaces: [Ethernet7, Ethernet7]
-        - name: dc2-borderleaf2
-          id: 28
-          mgmt_ip: 192.168.0.206/24
+          evpn_gateway:
+            # Define remote peers of the EVPN VXLAN Gateway. If the hostname can be found in the inventory, ip_address and BGP ASN will be automatically populated. Manual override takes precedence. If the peer's hostname can not be found in the inventory, ip_address and bgp_as must be defined.
+            remote_peers:
+              - hostname: dc2-borderleaf1
+        - name: dc1-borderleaf2
+          id: 18
+          mgmt_ip: 192.168.0.106/24
           uplink_switch_interfaces: [Ethernet8, Ethernet8]
+          evpn_gateway:
+            # Define remote peers of the EVPN VXLAN Gateway. If the hostname can be found in the inventory, ip_address and BGP ASN will be automatically populated. Manual override takes precedence. If the peer's hostname can not be found in the inventory, ip_address and bgp_as must be defined.
+            remote_peers:
+              - hostname: dc2-borderleaf2
