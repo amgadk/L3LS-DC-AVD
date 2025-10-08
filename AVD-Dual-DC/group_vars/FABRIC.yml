@@ -28,7 +28,7 @@ mgmt_interface_vrf: default
 
 
 # Local users
-local_users:
+aaa_settings.local_users:
   # Define a new user, which is called "ansible"
   - name: ansible
     privilege: 15
