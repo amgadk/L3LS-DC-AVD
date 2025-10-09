@@ -107,6 +107,7 @@ l2leaf:
           uplink_switches: [campus-spine2]
           uplink_switch_interfaces: [Ethernet2]
     - group: POD-2-3
+      campus_access_pod: BUILDING-2
       cv_tags_topology_type: "member-leaf"
       mlag: false
       uplink_switches: [pod-2-1, pod-2-2]
@@ -117,6 +118,7 @@ l2leaf:
           mgmt_ip: 192.168.0.15/24
           uplink_switch_interfaces: [Ethernet47, Ethernet47]
     - group: POD-2-4
+      campus_access_pod: BUILDING-2
       cv_tags_topology_type: "member-leaf"
       mlag: false
       uplink_switches: [pod-2-1, pod-2-2]
@@ -145,6 +147,7 @@ l2leaf:
           uplink_switches: [campus-spine2]
           uplink_switch_interfaces: [Ethernet3]
     - group: POD-3-3
+      campus_access_pod: BUILDING-3
       cv_tags_topology_type: "member-leaf"
       mlag: false
       uplink_switches: [pod-3-1, pod-3-2]
