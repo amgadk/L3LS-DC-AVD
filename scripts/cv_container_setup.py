@@ -100,6 +100,8 @@ def cvp_create_configlets():
         cvp_client.api.apply_configlets_to_device(
             "Management Configs", device_name, mgmt_configlet_key
         )
+        #time.sleep(5)
+        #print("Waiting for 5 seconds")
 
     cvp_execute_pending_tasks()
 
