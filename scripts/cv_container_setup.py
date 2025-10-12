@@ -1,13 +1,14 @@
 import ssl
 import requests
+import time
 from cvprac.cvp_client import CvpClient
 
 ssl._create_default_https_context = ssl._create_unverified_context
 requests.packages.urllib3.disable_warnings()
 
 cvp_client = CvpClient()
-cvp_ip = "10.18.138.107"
-cvp_token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJkaWQiOjc1NTk0MTY4ODkzNzAyMTQ2NDIsImRzbiI6ImN2cHJhYyIsImRzdCI6ImFjY291bnQiLCJleHAiOjE3NjE4ODE2MTcsImlhdCI6MTc2MDA2NzIyMSwib2dpIjozLCJvZ24iOiJEZWZhdWx0Iiwic2lkIjoiZGExNzZiYmFkYzg3OTE1ZDNjZjY0ODU1Y2QzYzBjMzQ5ZDA3ZDk2ZDM5ZDczMWQ2NTc1NTI4OWRhN2Q1YzIxNy1OdXFzdkUtRDdnZE1rQlU4SVBkeEoyWlJTSlZuVHFrVkVtUVB3NXR0In0.J1h4hKrpoMt-41I-afS280RHm1w5AC46BzDMfXF0cETNElzcKdVCOiPkxCV3w18V1QOzUHoUQ_oiG6DdRgulamUyghmf0J4h4-9H2Ilcf9H20Pe1_jnWBWg-XWpOy1ume9rC7cnMtuPhQt6wU0AI-5ls5v4RwItjuj2qTXust5xTRw6jNGOXzpVk8C3pGTfk9NY9_NrRg8VieDQgv-i5OFvjWgQ4lk0p3EviMPzK0C1gV3-UluBbnnC0hvkx1vukbzKP4ZzRaYjEaKA0l-Ongx7Xpt0PcQxGAC32JwPQSOzbFZ4FqVKK4zL82fAnc_QBYp4yXK828sM8r480tlhpmo-j20OKFCiXDbGOHql2KhOPOzS6OQU-zrdSN8zkBnLV6jfrZhrF294xl7hUCUt0XurlaPdqheXkISvzIVSART0FpJPmCtAo__w8yZHgNt3Q_OdYkyD0IRSvMpdUGXuGJGE2dv_z3pK3ZqWPaRHlaDRhoXC90_tLAiGPww9dmrP-K5ixhMyZdP9QhtqQExZ-wlfy3Tu7XqxKZPLir-yPvSbZMxDRdvaJCCG6didkK7jCuHRgkS_ypXn5kupSvRZPH8LKs6ENZsaje6km2X-1xng4gqDc6jSSvtovutwv4vXZhYQr4C2I96rtg62fpO1WZAociHdgNgpjj6KmB7ho6No"
+cvp_ip = "10.18.137.110"
+cvp_token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJkaWQiOjc1NTk0NzA5MTE0Njg4NjM3NDMsImRzbiI6ImF2ZCIsImRzdCI6ImFjY291bnQiLCJleHAiOjE3NjE4OTI0NjcsImlhdCI6MTc2MDA3ODA3MSwib2dpIjozLCJvZ24iOiJEZWZhdWx0Iiwic2lkIjoiMTAxYTlmYzA5ZTUyNDY5ZjA3ZWZmMTk3NzcxMWVkOWM2YzgyYTc1ZWE2MDllYjY0NDM3NTVjMGE0MWY4MGNjMi0wWUFZMWowalR0WmhVTjlEZUxFS1BuQU90VE5NRDVvRDBPd0VPMkxZIn0.AVoGWgB4uJweBhUdDQkA1AGu47sjdDTmliBKzWIz1K1JPjw-MmrW90IDqQPeX_TB8h_YSTlH8oRbX0JzmKUR6aGmBYeVdJSVbfPNOMCjTmy50XuFmnn9MaLiI2gNP1mduBpjiUwlbB-kSfYQZD33EnmDySLR5NvsEVkIuh0L5VlzW1Ee4-rS-qFTN7yjj17smXQcbaOAW-wqXwCaDlGDsP_6mQTUeqRkEgIfe9zSwmeBzCu9VHK3pU4Kv0ebxbw-0Nacq1mACYxiO9b-yZYTMsjGTuteT388C_9_MCE5TZzdvUg3Cbjkl40DnIlvZcnYMQI2ErGLsw1U-8mBq39__OYo8cioRtb1L1MvJglCOUBvzPv_Rd7P1InmBHFffkJ5WTwpFy_64X3SPfA9TfD5wq-k0r0ikk3SYGNW_Rwnj7wefQpgP0b4tpyPe6JrOj_GhFeqWPtv1CJkVPvdglRnYc4wwmpZDOeI_AkxB0gl_iCWatPxmE95zQT4cgmsEmJVCKmFh7Ix34zigc__IZoNzSi9mjOnMoTtHFviaAJ1Ayv0KUtYEutUgWda6zZzSALyNv1iVjn0wZw85ngpFrx5xJsJrVZSSz_mqrOdB3BrjB7ZM7u2sfBYvydSZj0Vm2Cv0CBMUafPVbNOxTqc21dPhwF0teFuiEj2vWrVutqL6Z4"
 
 
 
@@ -71,6 +72,8 @@ def cvp_create_configlets():
     Returns:
     None
     """
+    time.sleep(20)
+    print("Waiting for 20 seconds")
     cvp_connection()
 
     device_list = cvp_client.api.get_devices_in_container("Tenant")
@@ -100,8 +103,7 @@ def cvp_create_configlets():
         cvp_client.api.apply_configlets_to_device(
             "Management Configs", device_name, mgmt_configlet_key
         )
-        #time.sleep(5)
-        #print("Waiting for 5 seconds")
+
 
     cvp_execute_pending_tasks()
 
