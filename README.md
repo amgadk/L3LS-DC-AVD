@@ -121,15 +121,11 @@ This guide will go through the steps to fully configure a DC fabric from scratch
 |  | E2 |  |  | BL2 E2 |
 |  | E3 | 10.10.5.1/30 |  | Spine1 E7 |
 |  | E4 | 10.10.5.5/30 |  | Spine2 E7 |
-|  | E5 | 10.10.5.9/30 |  | Spine3 E7 |
-|  | E6 | 10.10.5.13/30 |  | Spine4 E7 |
 | Border Leaf2 |  |  | 65500 |  |
 |  | E1 |  |  | BL1 E1 |
 |  | E2 |  |  | BL1 E2 |
 |  | E3 | 10.10.6.1/30 |  | Spine1 E8 |
 |  | E4 | 10.10.6.5/30 |  | Spine2 E8 |
-|  | E5 | 10.10.6.9/30 |  | Spine3 E8 |
-|  | E6 | 10.10.6.13/30 |  | Spine4 E8 |
 | Spine 1 |  |  | 65100 |  |
 |  | E1 |  |  | Spine2 E1 |
 |  | E2 |  |  | Spine2 E2 |
@@ -171,29 +167,21 @@ This guide will go through the steps to fully configure a DC fabric from scratch
 |  | E2 |  |  | Leaf2 E2 |
 |  | E3 | 10.10.1.2/30 |  | Spine1 E3 |
 |  | E4 | 10.10.2.2/30 |  | Spine2 E3 |
-|  | E5 | 10.10.3.2/30 |  | Spine3 E3 |
-|  | E6 | 10.10.4.2/30 |  | Spine4 E3 |
 | Leaf2 |  |  | 65001 |  |
 |  | E1 |  |  | Leaf1 E1 |
 |  | E2 |  |  | Leaf1 E2 |
 |  | E3 | 10.10.1.6/30 |  | Spine1 E4 |
 |  | E4 | 10.10.2.6/30 |  | Spine2 E4 |
-|  | E5 | 10.10.3.6/30 |  | Spine3 E4 |
-|  | E6 | 10.10.4.6/30 |  | Spine4 E4 |
 | Leaf3 |  |  | 65002 |  |
 |  | E1 |  |  | Leaf4 E1 |
 |  | E2 |  |  | Leaf4 E2 |
 |  | E3 | 10.10.1.10/30 |  | Spine1 E5 |
 |  | E4 | 10.10.2.10/30 |  | Spine2 E5 |
-|  | E5 | 10.10.3.10/30 |  | Spine3 E5 |
-|  | E6 | 10.10.4.10/30 |  | Spine4 E5 |
 | Leaf4 |  |  | 65003 |  |
 |  | E1 |  |  | Leaf3 E1 |
 |  | E2 |  |  | Leaf3 E2 |
 |  | E3 | 10.10.1.14/30 |  | Spine1 E6 |
 |  | E4 | 10.10.2.14/30 |  | Spine2 E6 |
-|  | E5 | 10.10.3.14/30 |  | Spine3 E6 |
-|  | E6 | 10.10.4.14/30 |  | Spine4 E6 |
 
 
 **L3 EVPN Host Subnet IP Addresses and IP Gateways**
