@@ -43,7 +43,7 @@ l3leaf:
           mgmt_ip: 192.168.0.202/24
           uplink_switch_interfaces: [Ethernet4, Ethernet4]
     - group: mlag2
-      bgp_as: 65250 # Overriden automatic allocation for host4/R1 peering
+      #bgp_as: 65250 # Overriden automatic allocation for this Leaf pair
       nodes:
         - name: dc2-leaf3
           id: 25
@@ -54,7 +54,7 @@ l3leaf:
           mgmt_ip: 192.168.0.204/24
           uplink_switch_interfaces: [Ethernet6, Ethernet6]
     - group: borderleafs
-      bgp_as: 65260 # Overriden automatic allocation for host4/R1 peering
+      bgp_as: 65150 # Overriden automatic allocation for BorderLeafs
       nodes:
         - name: dc2-borderleaf1
           id: 27
