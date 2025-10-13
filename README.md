@@ -25,7 +25,7 @@ Overlay:
 Multi-Homing:
 
 <p align="center">
-  <img src='Images/dc1_multihoming.png' alt='Arista DC Fabric'/>
+  <img src='Images/dc1_multihoming2.png' alt='Arista DC Fabric'/>
 </p>
 
 Tenant Networks:
