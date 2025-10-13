@@ -18,13 +18,14 @@ AVD is an opinionated collection, meaning field experiences and best practices f
 
 Parameters which need to be defined by the user include (but are not limited to):
 
-Username/password for network devices and CloudVision
-OOB management IP range
-IP scope for link addresses
-IP scope for loopback interfaces
-VLAN and VNI ranges
-Device hostnames
-Autonomous System numbers
-Interface connections between devices
-Which devices are acting in each role, such as spine or leaf.
+- Username/password for network devices and CloudVision
+- OOB management IP range
+- IP scope for link addresses
+- IP scope for loopback interfaces
+- VLAN and VNI ranges
+- Device hostnames
+- Autonomous System numbers
+- Interface connections between devices
+- Which devices are acting in each role, such as spine or leaf.
+
 From the details above, AVD will generate complete EOS configuration files that we can deploy to the devices. AVD also uses the information provided to produce full documentation of the current intended state of the network.
