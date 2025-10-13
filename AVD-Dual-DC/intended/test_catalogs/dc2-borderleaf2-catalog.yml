@@ -1,0 +1,486 @@
+anta.tests.connectivity:
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: dc2-borderleaf1
+      neighbor_port: Ethernet5
+      port: Ethernet5
+    result_overwrite:
+      custom_field: 'Local: Ethernet5 - Remote: dc2-borderleaf1 Ethernet5'
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: dc2-borderleaf1
+      neighbor_port: Ethernet6
+      port: Ethernet6
+    result_overwrite:
+      custom_field: 'Local: Ethernet6 - Remote: dc2-borderleaf1 Ethernet6'
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: dc2-spine1
+      neighbor_port: Ethernet8
+      port: Ethernet1
+    result_overwrite:
+      custom_field: 'Local: Ethernet1 - Remote: dc2-spine1 Ethernet8'
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: dc2-spine2
+      neighbor_port: Ethernet8
+      port: Ethernet2
+    result_overwrite:
+      custom_field: 'Local: Ethernet2 - Remote: dc2-spine2 Ethernet8'
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: dc1-borderleaf2
+      neighbor_port: Ethernet20
+      port: Ethernet20
+    result_overwrite:
+      custom_field: 'Local: Ethernet20 - Remote: dc1-borderleaf2 Ethernet20'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.203.108
+      repeat: 1
+      source: 192.168.203.109
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: P2P Interface Ethernet1 (IP: 192.168.203.109) - Destination:
+        dc2-spine1 Ethernet8 (IP: 192.168.203.108)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.203.110
+      repeat: 1
+      source: 192.168.203.111
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: P2P Interface Ethernet2 (IP: 192.168.203.111) - Destination:
+        dc2-spine2 Ethernet8 (IP: 192.168.203.110)'
+- VerifyReachability:
+    hosts:
+    - destination: 172.100.101.146
+      repeat: 1
+      source: 172.100.101.147
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: P2P Interface Ethernet20 (IP: 172.100.101.147) - Destination:
+        dc1-borderleaf2 Ethernet20 (IP: 172.100.101.146)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.101.11
+      repeat: 1
+      source: 192.168.101.28
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Loopback0 (IP: 192.168.101.28) - Destination: dc1-spine1
+        Loopback0 (IP: 192.168.101.11)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.101.12
+      repeat: 1
+      source: 192.168.101.28
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Loopback0 (IP: 192.168.101.28) - Destination: dc1-spine2
+        Loopback0 (IP: 192.168.101.12)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.101.13
+      repeat: 1
+      source: 192.168.101.28
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Loopback0 (IP: 192.168.101.28) - Destination: dc1-leaf1
+        Loopback0 (IP: 192.168.101.13)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.101.14
+      repeat: 1
+      source: 192.168.101.28
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Loopback0 (IP: 192.168.101.28) - Destination: dc1-leaf2
+        Loopback0 (IP: 192.168.101.14)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.101.15
+      repeat: 1
+      source: 192.168.101.28
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Loopback0 (IP: 192.168.101.28) - Destination: dc1-leaf3
+        Loopback0 (IP: 192.168.101.15)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.101.16
+      repeat: 1
+      source: 192.168.101.28
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Loopback0 (IP: 192.168.101.28) - Destination: dc1-leaf4
+        Loopback0 (IP: 192.168.101.16)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.101.17
+      repeat: 1
+      source: 192.168.101.28
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Loopback0 (IP: 192.168.101.28) - Destination: dc1-borderleaf1
+        Loopback0 (IP: 192.168.101.17)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.101.18
+      repeat: 1
+      source: 192.168.101.28
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Loopback0 (IP: 192.168.101.28) - Destination: dc1-borderleaf2
+        Loopback0 (IP: 192.168.101.18)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.101.21
+      repeat: 1
+      source: 192.168.101.28
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Loopback0 (IP: 192.168.101.28) - Destination: dc2-spine1
+        Loopback0 (IP: 192.168.101.21)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.101.22
+      repeat: 1
+      source: 192.168.101.28
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Loopback0 (IP: 192.168.101.28) - Destination: dc2-spine2
+        Loopback0 (IP: 192.168.101.22)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.101.23
+      repeat: 1
+      source: 192.168.101.28
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Loopback0 (IP: 192.168.101.28) - Destination: dc2-leaf1
+        Loopback0 (IP: 192.168.101.23)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.101.24
+      repeat: 1
+      source: 192.168.101.28
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Loopback0 (IP: 192.168.101.28) - Destination: dc2-leaf2
+        Loopback0 (IP: 192.168.101.24)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.101.25
+      repeat: 1
+      source: 192.168.101.28
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Loopback0 (IP: 192.168.101.28) - Destination: dc2-leaf3
+        Loopback0 (IP: 192.168.101.25)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.101.26
+      repeat: 1
+      source: 192.168.101.28
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Loopback0 (IP: 192.168.101.28) - Destination: dc2-leaf4
+        Loopback0 (IP: 192.168.101.26)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.101.27
+      repeat: 1
+      source: 192.168.101.28
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Loopback0 (IP: 192.168.101.28) - Destination: dc2-borderleaf1
+        Loopback0 (IP: 192.168.101.27)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.101.28
+      repeat: 1
+      source: 192.168.101.28
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Loopback0 (IP: 192.168.101.28) - Destination: dc2-borderleaf2
+        Loopback0 (IP: 192.168.101.28)'
+anta.tests.hardware:
+- VerifyEnvironmentPower:
+    result_overwrite:
+      custom_field: 'Accepted States: ''ok'''
+    states:
+    - ok
+- VerifyEnvironmentCooling:
+    result_overwrite:
+      custom_field: 'Accepted States: ''ok'''
+    states:
+    - ok
+- VerifyTemperature: null
+- VerifyTransceiversManufacturers:
+    manufacturers:
+    - Arista Networks
+    - Arastra, Inc.
+    - Not Present
+    result_overwrite:
+      custom_field: 'Accepted Manufacturers: ''Arista Networks'', ''Arastra, Inc.'',
+        ''Not Present'''
+anta.tests.interfaces:
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet5
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet5 - MLAG_dc2-borderleaf1_Ethernet5 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet6
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet6 - MLAG_dc2-borderleaf1_Ethernet6 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet1 - P2P_dc2-spine1_Ethernet8 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet2
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet2 - P2P_dc2-spine2_Ethernet8 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet20
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet20 - P2P_dc1-borderleaf2_Ethernet20 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Port-Channel5
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel5 - MLAG_dc2-borderleaf1_Port-Channel5 =
+        'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan4093
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan4093 - MLAG_L3 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan4094
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan4094 - MLAG = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan10
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan10 - DMZ = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan3009
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan3009 - MLAG_L3_VRF_VRF_A = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan20
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan20 - Internal = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan3019
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan3019 - MLAG_L3_VRF_VRF_B = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Loopback0
+      status: up
+    result_overwrite:
+      custom_field: Interface Loopback0 - ROUTER_ID = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Loopback1
+      status: up
+    result_overwrite:
+      custom_field: Interface Loopback1 - VXLAN_TUNNEL_SOURCE = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vxlan1
+      status: up
+    result_overwrite:
+      custom_field: Interface Vxlan1 = 'up'
+anta.tests.mlag:
+- VerifyMlagStatus: null
+anta.tests.routing.bgp:
+- VerifyBGPSpecificPeers:
+    address_families:
+    - afi: evpn
+      peers:
+      - 192.168.101.21
+    result_overwrite:
+      custom_field: 'BGP EVPN Peer: dc2-spine1 (IP: 192.168.101.21)'
+- VerifyBGPSpecificPeers:
+    address_families:
+    - afi: evpn
+      peers:
+      - 192.168.101.22
+    result_overwrite:
+      custom_field: 'BGP EVPN Peer: dc2-spine2 (IP: 192.168.101.22)'
+- VerifyBGPSpecificPeers:
+    address_families:
+    - afi: ipv4
+      peers:
+      - 10.255.251.52
+      safi: unicast
+    result_overwrite:
+      custom_field: 'BGP IPv4 Unicast Peer: dc2-borderleaf1 (IP: 10.255.251.52)'
+- VerifyBGPSpecificPeers:
+    address_families:
+    - afi: ipv4
+      peers:
+      - 192.168.203.108
+      safi: unicast
+    result_overwrite:
+      custom_field: 'BGP IPv4 Unicast Peer: dc2-spine1 (IP: 192.168.203.108)'
+- VerifyBGPSpecificPeers:
+    address_families:
+    - afi: ipv4
+      peers:
+      - 192.168.203.110
+      safi: unicast
+    result_overwrite:
+      custom_field: 'BGP IPv4 Unicast Peer: dc2-spine2 (IP: 192.168.203.110)'
+- VerifyBGPSpecificPeers:
+    address_families:
+    - afi: ipv4
+      peers:
+      - 172.100.101.146
+      safi: unicast
+    result_overwrite:
+      custom_field: 'BGP IPv4 Unicast Peer: dc1-borderleaf2 (IP: 172.100.101.146)'
+anta.tests.routing.generic:
+- VerifyRoutingProtocolModel:
+    model: multi-agent
+    result_overwrite:
+      custom_field: 'Routing protocol model: multi-agent'
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.101.11 - Peer: dc1-spine1'
+    routes:
+    - 192.168.101.11
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.101.12 - Peer: dc1-spine2'
+    routes:
+    - 192.168.101.12
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.101.13 - Peer: dc1-leaf1'
+    routes:
+    - 192.168.101.13
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.101.14 - Peer: dc1-leaf2'
+    routes:
+    - 192.168.101.14
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.101.15 - Peer: dc1-leaf3'
+    routes:
+    - 192.168.101.15
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.101.16 - Peer: dc1-leaf4'
+    routes:
+    - 192.168.101.16
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.101.17 - Peer: dc1-borderleaf1'
+    routes:
+    - 192.168.101.17
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.101.18 - Peer: dc1-borderleaf2'
+    routes:
+    - 192.168.101.18
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.101.21 - Peer: dc2-spine1'
+    routes:
+    - 192.168.101.21
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.101.22 - Peer: dc2-spine2'
+    routes:
+    - 192.168.101.22
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.101.23 - Peer: dc2-leaf1'
+    routes:
+    - 192.168.101.23
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.101.24 - Peer: dc2-leaf2'
+    routes:
+    - 192.168.101.24
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.101.25 - Peer: dc2-leaf3'
+    routes:
+    - 192.168.101.25
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.101.26 - Peer: dc2-leaf4'
+    routes:
+    - 192.168.101.26
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.101.27 - Peer: dc2-borderleaf1'
+    routes:
+    - 192.168.101.27
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.101.28 - Peer: dc2-borderleaf2'
+    routes:
+    - 192.168.101.28
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.102.13 - Peer: dc1-leaf1'
+    routes:
+    - 192.168.102.13
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.102.15 - Peer: dc1-leaf3'
+    routes:
+    - 192.168.102.15
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.102.17 - Peer: dc1-borderleaf1'
+    routes:
+    - 192.168.102.17
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.202.23 - Peer: dc2-leaf1'
+    routes:
+    - 192.168.202.23
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.202.25 - Peer: dc2-leaf3'
+    routes:
+    - 192.168.202.25
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.202.27 - Peer: dc2-borderleaf1'
+    routes:
+    - 192.168.202.27
+anta.tests.system:
+- VerifyNTP: null
+- VerifyReloadCause: null

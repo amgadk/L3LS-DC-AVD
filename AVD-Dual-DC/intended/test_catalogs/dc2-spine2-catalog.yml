@@ -1,0 +1,259 @@
+anta.tests.connectivity:
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: dc2-leaf1
+      neighbor_port: Ethernet2
+      port: Ethernet1
+    result_overwrite:
+      custom_field: 'Local: Ethernet1 - Remote: dc2-leaf1 Ethernet2'
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: dc2-leaf2
+      neighbor_port: Ethernet2
+      port: Ethernet2
+    result_overwrite:
+      custom_field: 'Local: Ethernet2 - Remote: dc2-leaf2 Ethernet2'
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: dc2-leaf3
+      neighbor_port: Ethernet2
+      port: Ethernet3
+    result_overwrite:
+      custom_field: 'Local: Ethernet3 - Remote: dc2-leaf3 Ethernet2'
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: dc2-leaf4
+      neighbor_port: Ethernet2
+      port: Ethernet4
+    result_overwrite:
+      custom_field: 'Local: Ethernet4 - Remote: dc2-leaf4 Ethernet2'
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: dc2-borderleaf1
+      neighbor_port: Ethernet2
+      port: Ethernet7
+    result_overwrite:
+      custom_field: 'Local: Ethernet7 - Remote: dc2-borderleaf1 Ethernet2'
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: dc2-borderleaf2
+      neighbor_port: Ethernet2
+      port: Ethernet8
+    result_overwrite:
+      custom_field: 'Local: Ethernet8 - Remote: dc2-borderleaf2 Ethernet2'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.203.91
+      repeat: 1
+      source: 192.168.203.90
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: P2P Interface Ethernet1 (IP: 192.168.203.90) - Destination:
+        dc2-leaf1 Ethernet2 (IP: 192.168.203.91)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.203.95
+      repeat: 1
+      source: 192.168.203.94
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: P2P Interface Ethernet2 (IP: 192.168.203.94) - Destination:
+        dc2-leaf2 Ethernet2 (IP: 192.168.203.95)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.203.99
+      repeat: 1
+      source: 192.168.203.98
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: P2P Interface Ethernet3 (IP: 192.168.203.98) - Destination:
+        dc2-leaf3 Ethernet2 (IP: 192.168.203.99)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.203.103
+      repeat: 1
+      source: 192.168.203.102
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: P2P Interface Ethernet4 (IP: 192.168.203.102) - Destination:
+        dc2-leaf4 Ethernet2 (IP: 192.168.203.103)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.203.107
+      repeat: 1
+      source: 192.168.203.106
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: P2P Interface Ethernet7 (IP: 192.168.203.106) - Destination:
+        dc2-borderleaf1 Ethernet2 (IP: 192.168.203.107)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.203.111
+      repeat: 1
+      source: 192.168.203.110
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: P2P Interface Ethernet8 (IP: 192.168.203.110) - Destination:
+        dc2-borderleaf2 Ethernet2 (IP: 192.168.203.111)'
+anta.tests.hardware:
+- VerifyEnvironmentPower:
+    result_overwrite:
+      custom_field: 'Accepted States: ''ok'''
+    states:
+    - ok
+- VerifyEnvironmentCooling:
+    result_overwrite:
+      custom_field: 'Accepted States: ''ok'''
+    states:
+    - ok
+- VerifyTemperature: null
+- VerifyTransceiversManufacturers:
+    manufacturers:
+    - Arista Networks
+    - Arastra, Inc.
+    - Not Present
+    result_overwrite:
+      custom_field: 'Accepted Manufacturers: ''Arista Networks'', ''Arastra, Inc.'',
+        ''Not Present'''
+anta.tests.interfaces:
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet1 - P2P_dc2-leaf1_Ethernet2 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet2
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet2 - P2P_dc2-leaf2_Ethernet2 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet3
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet3 - P2P_dc2-leaf3_Ethernet2 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet4
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet4 - P2P_dc2-leaf4_Ethernet2 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet7
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet7 - P2P_dc2-borderleaf1_Ethernet2 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet8
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet8 - P2P_dc2-borderleaf2_Ethernet2 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Loopback0
+      status: up
+    result_overwrite:
+      custom_field: Interface Loopback0 - ROUTER_ID = 'up'
+anta.tests.routing.bgp:
+- VerifyBGPSpecificPeers:
+    address_families:
+    - afi: evpn
+      peers:
+      - 192.168.101.27
+    result_overwrite:
+      custom_field: 'BGP EVPN Peer: dc2-borderleaf1 (IP: 192.168.101.27)'
+- VerifyBGPSpecificPeers:
+    address_families:
+    - afi: evpn
+      peers:
+      - 192.168.101.28
+    result_overwrite:
+      custom_field: 'BGP EVPN Peer: dc2-borderleaf2 (IP: 192.168.101.28)'
+- VerifyBGPSpecificPeers:
+    address_families:
+    - afi: evpn
+      peers:
+      - 192.168.101.23
+    result_overwrite:
+      custom_field: 'BGP EVPN Peer: dc2-leaf1 (IP: 192.168.101.23)'
+- VerifyBGPSpecificPeers:
+    address_families:
+    - afi: evpn
+      peers:
+      - 192.168.101.24
+    result_overwrite:
+      custom_field: 'BGP EVPN Peer: dc2-leaf2 (IP: 192.168.101.24)'
+- VerifyBGPSpecificPeers:
+    address_families:
+    - afi: evpn
+      peers:
+      - 192.168.101.25
+    result_overwrite:
+      custom_field: 'BGP EVPN Peer: dc2-leaf3 (IP: 192.168.101.25)'
+- VerifyBGPSpecificPeers:
+    address_families:
+    - afi: evpn
+      peers:
+      - 192.168.101.26
+    result_overwrite:
+      custom_field: 'BGP EVPN Peer: dc2-leaf4 (IP: 192.168.101.26)'
+- VerifyBGPSpecificPeers:
+    address_families:
+    - afi: ipv4
+      peers:
+      - 192.168.203.91
+      safi: unicast
+    result_overwrite:
+      custom_field: 'BGP IPv4 Unicast Peer: dc2-leaf1 (IP: 192.168.203.91)'
+- VerifyBGPSpecificPeers:
+    address_families:
+    - afi: ipv4
+      peers:
+      - 192.168.203.95
+      safi: unicast
+    result_overwrite:
+      custom_field: 'BGP IPv4 Unicast Peer: dc2-leaf2 (IP: 192.168.203.95)'
+- VerifyBGPSpecificPeers:
+    address_families:
+    - afi: ipv4
+      peers:
+      - 192.168.203.99
+      safi: unicast
+    result_overwrite:
+      custom_field: 'BGP IPv4 Unicast Peer: dc2-leaf3 (IP: 192.168.203.99)'
+- VerifyBGPSpecificPeers:
+    address_families:
+    - afi: ipv4
+      peers:
+      - 192.168.203.103
+      safi: unicast
+    result_overwrite:
+      custom_field: 'BGP IPv4 Unicast Peer: dc2-leaf4 (IP: 192.168.203.103)'
+- VerifyBGPSpecificPeers:
+    address_families:
+    - afi: ipv4
+      peers:
+      - 192.168.203.107
+      safi: unicast
+    result_overwrite:
+      custom_field: 'BGP IPv4 Unicast Peer: dc2-borderleaf1 (IP: 192.168.203.107)'
+- VerifyBGPSpecificPeers:
+    address_families:
+    - afi: ipv4
+      peers:
+      - 192.168.203.111
+      safi: unicast
+    result_overwrite:
+      custom_field: 'BGP IPv4 Unicast Peer: dc2-borderleaf2 (IP: 192.168.203.111)'
+anta.tests.routing.generic:
+- VerifyRoutingProtocolModel:
+    model: multi-agent
+    result_overwrite:
+      custom_field: 'Routing protocol model: multi-agent'
+anta.tests.system:
+- VerifyNTP: null
+- VerifyReloadCause: null
