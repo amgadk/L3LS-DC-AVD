@@ -19,7 +19,7 @@ Underlay:
 Overlay:
 
 <p align="center">
-  <img src='Images/DC1_Overlay.png' alt='Arista DC Fabric'/>
+  <img src='Images/DC1-Overlay.png' alt='Arista DC Fabric'/>
 </p>
 
 Multi-Homing:
