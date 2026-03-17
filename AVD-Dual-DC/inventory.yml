@@ -13,8 +13,8 @@ all:
           ansible_httpapi_port: 443
       hosts: 
         cvp1:
-          ansible_httpapi_host: 10.18.179.11
-          ansible_host: 10.18.179.11
+          ansible_httpapi_host: 10.18.179.244
+          ansible_host: 10.18.179.244
     FABRIC:
       vars:
         ansible_user: arista
@@ -40,29 +40,29 @@ all:
                 type: spine
               hosts:
                 dc1-spine1:
-                  ansible_host: 10.18.179.31
+                  ansible_host: 10.18.179.237
                 dc1-spine2:
-                  ansible_host: 10.18.179.55
+                  ansible_host: 10.18.179.218
             DC1_LEAVES:
               vars: 
                 type: l3leaf
               hosts:
                 dc1-leaf1:
-                  ansible_host: 10.18.179.9
+                  ansible_host: 10.18.179.235
                 dc1-leaf2:
-                  ansible_host: 10.18.179.76
+                  ansible_host: 10.18.179.214
                 dc1-leaf3:
-                  ansible_host: 10.18.179.67
+                  ansible_host: 10.18.179.207
                 dc1-leaf4:
-                  ansible_host: 10.18.179.26
+                  ansible_host: 10.18.179.217
                 # dc1-leaf5:
-                #   ansible_host: 10.18.179.22
+                #   ansible_host: 10.18.179.241
                 # dc1-leaf6:
-                #   ansible_host: 10.18.179.88
+                #   ansible_host: 10.18.179.204
                 dc1-borderleaf1:
-                  ansible_host: 10.18.179.111
+                  ansible_host: 10.18.179.242
                 dc1-borderleaf2:
-                  ansible_host: 10.18.178.156
+                  ansible_host: 10.18.179.194
         DC2:
           children:
             DC2_SPINES:
@@ -70,25 +70,25 @@ all:
                 type: spine
               hosts:
                 dc2-spine1:
-                  ansible_host: 10.18.178.217
+                  ansible_host: 10.18.179.239
                 dc2-spine2:
-                  ansible_host: 10.18.179.3
+                  ansible_host: 10.18.179.197
             DC2_LEAVES:
               vars: 
                 type: l3leaf
               hosts:
                 dc2-leaf1:
-                  ansible_host: 10.18.179.24
+                  ansible_host: 10.18.179.198
                 dc2-leaf2:
-                  ansible_host: 10.18.178.240
+                  ansible_host: 10.18.179.229
                 dc2-leaf3:
-                  ansible_host: 10.18.179.96
+                  ansible_host: 10.18.179.232
                 dc2-leaf4:
-                  ansible_host: 10.18.178.233
+                  ansible_host: 10.18.179.195
                 dc2-borderleaf1:
-                  ansible_host: 10.18.179.59
+                  ansible_host: 10.18.179.192
                 dc2-borderleaf2:
-                  ansible_host: 10.18.179.69
+                  ansible_host: 10.18.179.238
 
     EVPN_SERVICES:
       children:
