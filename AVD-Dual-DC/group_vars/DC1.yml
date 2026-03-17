@@ -53,17 +53,17 @@ l3leaf:
           id: 16
           mgmt_ip: 192.168.0.104/24
           uplink_switch_interfaces: [Ethernet4, Ethernet4]
-    - group: mlag3
-      #bgp_as: 65150 # Overriden automatic allocation for this leaf pair
-      nodes:
-        - name: dc1-leaf5
-          id: 19
-          mgmt_ip: 192.168.0.105/24
-          uplink_switch_interfaces: [Ethernet5, Ethernet5]
-        - name: dc1-leaf6
-          id: 20
-          mgmt_ip: 192.168.0.106/24
-          uplink_switch_interfaces: [Ethernet6, Ethernet6]
+    # - group: mlag3
+    #   #bgp_as: 65150 # Overriden automatic allocation for this leaf pair
+    #   nodes:
+    #     - name: dc1-leaf5
+    #       id: 19
+    #       mgmt_ip: 192.168.0.105/24
+    #       uplink_switch_interfaces: [Ethernet5, Ethernet5]
+    #     - name: dc1-leaf6
+    #       id: 20
+    #       mgmt_ip: 192.168.0.106/24
+    #       uplink_switch_interfaces: [Ethernet6, Ethernet6]
     - group: borderleafs
       bgp_as: 65150 # Overriden automatic allocation for BorderLeafs
       nodes:
