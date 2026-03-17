@@ -55,10 +55,10 @@ all:
                   ansible_host: 10.18.171.198
                 dc1-leaf4:
                   ansible_host: 10.18.157.6
-                # dc1-leaf5:
-                #   ansible_host: 10.18.171.193
-                # dc1-leaf6:
-                #   ansible_host: 10.18.150.207
+                dc1-leaf5:
+                  ansible_host: 10.18.171.193
+                dc1-leaf6:
+                  ansible_host: 10.18.150.207
                 dc1-borderleaf1:
                   ansible_host: 10.18.171.191
                 dc1-borderleaf2:

@@ -23,6 +23,8 @@
 | FABRIC | l3leaf | dc1-leaf2 | 192.168.0.102/24 | vEOS-lab | Provisioned | - |
 | FABRIC | l3leaf | dc1-leaf3 | 192.168.0.103/24 | vEOS-lab | Provisioned | - |
 | FABRIC | l3leaf | dc1-leaf4 | 192.168.0.104/24 | vEOS-lab | Provisioned | - |
+| FABRIC | l3leaf | dc1-leaf5 | 192.168.0.105/24 | vEOS-lab | Provisioned | - |
+| FABRIC | l3leaf | dc1-leaf6 | 192.168.0.106/24 | vEOS-lab | Provisioned | - |
 | FABRIC | spine | dc1-spine1 | 192.168.0.111/24 | vEOS-lab | Provisioned | - |
 | FABRIC | spine | dc1-spine2 | 192.168.0.112/24 | vEOS-lab | Provisioned | - |
 | FABRIC | l3leaf | dc2-borderleaf1 | 192.168.0.207/24 | vEOS-lab | Provisioned | - |
@@ -65,6 +67,12 @@
 | l3leaf | dc1-leaf3 | Ethernet6 | mlag_peer | dc1-leaf4 | Ethernet6 |
 | l3leaf | dc1-leaf4 | Ethernet1 | spine | dc1-spine1 | Ethernet4 |
 | l3leaf | dc1-leaf4 | Ethernet2 | spine | dc1-spine2 | Ethernet4 |
+| l3leaf | dc1-leaf5 | Ethernet1 | spine | dc1-spine1 | Ethernet5 |
+| l3leaf | dc1-leaf5 | Ethernet2 | spine | dc1-spine2 | Ethernet5 |
+| l3leaf | dc1-leaf5 | Ethernet5 | mlag_peer | dc1-leaf6 | Ethernet5 |
+| l3leaf | dc1-leaf5 | Ethernet6 | mlag_peer | dc1-leaf6 | Ethernet6 |
+| l3leaf | dc1-leaf6 | Ethernet1 | spine | dc1-spine1 | Ethernet6 |
+| l3leaf | dc1-leaf6 | Ethernet2 | spine | dc1-spine2 | Ethernet6 |
 | l3leaf | dc2-borderleaf1 | Ethernet1 | spine | dc2-spine1 | Ethernet7 |
 | l3leaf | dc2-borderleaf1 | Ethernet2 | spine | dc2-spine2 | Ethernet7 |
 | l3leaf | dc2-borderleaf1 | Ethernet5 | mlag_peer | dc2-borderleaf2 | Ethernet5 |
@@ -90,7 +98,7 @@
 
 | Uplink IPv4 Pool | Available Addresses | Assigned addresses | Assigned Address % |
 | ---------------- | ------------------- | ------------------ | ------------------ |
-| 192.168.103.0/24 | 256 | 24 | 9.38 % |
+| 192.168.103.0/24 | 256 | 32 | 12.5 % |
 | 192.168.203.0/24 | 256 | 24 | 9.38 % |
 
 ### Point-To-Point Links Node Allocation
@@ -111,6 +119,10 @@
 | dc1-leaf3 | Ethernet2 | 192.168.103.59/31 | dc1-spine2 | Ethernet3 | 192.168.103.58/31 |
 | dc1-leaf4 | Ethernet1 | 192.168.103.61/31 | dc1-spine1 | Ethernet4 | 192.168.103.60/31 |
 | dc1-leaf4 | Ethernet2 | 192.168.103.63/31 | dc1-spine2 | Ethernet4 | 192.168.103.62/31 |
+| dc1-leaf5 | Ethernet1 | 192.168.103.73/31 | dc1-spine1 | Ethernet5 | 192.168.103.72/31 |
+| dc1-leaf5 | Ethernet2 | 192.168.103.75/31 | dc1-spine2 | Ethernet5 | 192.168.103.74/31 |
+| dc1-leaf6 | Ethernet1 | 192.168.103.77/31 | dc1-spine1 | Ethernet6 | 192.168.103.76/31 |
+| dc1-leaf6 | Ethernet2 | 192.168.103.79/31 | dc1-spine2 | Ethernet6 | 192.168.103.78/31 |
 | dc2-borderleaf1 | Ethernet1 | 192.168.203.105/31 | dc2-spine1 | Ethernet7 | 192.168.203.104/31 |
 | dc2-borderleaf1 | Ethernet2 | 192.168.203.107/31 | dc2-spine2 | Ethernet7 | 192.168.203.106/31 |
 | dc2-borderleaf2 | Ethernet1 | 192.168.203.109/31 | dc2-spine1 | Ethernet8 | 192.168.203.108/31 |
@@ -128,7 +140,7 @@
 
 | Loopback Pool | Available Addresses | Assigned addresses | Assigned Address % |
 | ------------- | ------------------- | ------------------ | ------------------ |
-| 192.168.101.0/24 | 256 | 16 | 6.25 % |
+| 192.168.101.0/24 | 256 | 18 | 7.04 % |
 
 ### Loopback0 Interfaces Node Allocation
 
@@ -140,6 +152,8 @@
 | FABRIC | dc1-leaf2 | 192.168.101.14/32 |
 | FABRIC | dc1-leaf3 | 192.168.101.15/32 |
 | FABRIC | dc1-leaf4 | 192.168.101.16/32 |
+| FABRIC | dc1-leaf5 | 192.168.101.19/32 |
+| FABRIC | dc1-leaf6 | 192.168.101.20/32 |
 | FABRIC | dc1-spine1 | 192.168.101.11/32 |
 | FABRIC | dc1-spine2 | 192.168.101.12/32 |
 | FABRIC | dc2-borderleaf1 | 192.168.101.27/32 |
@@ -155,7 +169,7 @@
 
 | VTEP Loopback Pool | Available Addresses | Assigned addresses | Assigned Address % |
 | ------------------ | ------------------- | ------------------ | ------------------ |
-| 192.168.102.0/24 | 256 | 6 | 2.35 % |
+| 192.168.102.0/24 | 256 | 8 | 3.13 % |
 | 192.168.202.0/24 | 256 | 6 | 2.35 % |
 
 ### VTEP Loopback Node allocation
@@ -168,6 +182,8 @@
 | FABRIC | dc1-leaf2 | 192.168.102.13/32 |
 | FABRIC | dc1-leaf3 | 192.168.102.15/32 |
 | FABRIC | dc1-leaf4 | 192.168.102.15/32 |
+| FABRIC | dc1-leaf5 | 192.168.102.19/32 |
+| FABRIC | dc1-leaf6 | 192.168.102.19/32 |
 | FABRIC | dc2-borderleaf1 | 192.168.202.27/32 |
 | FABRIC | dc2-borderleaf2 | 192.168.202.27/32 |
 | FABRIC | dc2-leaf1 | 192.168.202.23/32 |

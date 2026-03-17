@@ -48,6 +48,28 @@ ethernet_interfaces:
     peer_type: l3leaf
   switchport:
     enabled: false
+- name: Ethernet5
+  description: P2P_dc1-leaf5_Ethernet1
+  shutdown: false
+  mtu: 1550
+  ip_address: 192.168.103.72/31
+  metadata:
+    peer: dc1-leaf5
+    peer_interface: Ethernet1
+    peer_type: l3leaf
+  switchport:
+    enabled: false
+- name: Ethernet6
+  description: P2P_dc1-leaf6_Ethernet1
+  shutdown: false
+  mtu: 1550
+  ip_address: 192.168.103.76/31
+  metadata:
+    peer: dc1-leaf6
+    peer_interface: Ethernet1
+    peer_type: l3leaf
+  switchport:
+    enabled: false
 - name: Ethernet7
   description: P2P_dc1-borderleaf1_Ethernet1
   shutdown: false
@@ -156,6 +178,18 @@ router_bgp:
     metadata:
       peer: dc1-leaf4
     description: dc1-leaf4_Ethernet1
+  - ip_address: 192.168.103.73
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65118'
+    metadata:
+      peer: dc1-leaf5
+    description: dc1-leaf5_Ethernet1
+  - ip_address: 192.168.103.77
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65118'
+    metadata:
+      peer: dc1-leaf6
+    description: dc1-leaf6_Ethernet1
   - ip_address: 192.168.103.65
     peer_group: IPv4-UNDERLAY-PEERS
     remote_as: '65150'
@@ -204,6 +238,18 @@ router_bgp:
     metadata:
       peer: dc1-leaf4
     description: dc1-leaf4_Loopback0
+  - ip_address: 192.168.101.19
+    peer_group: EVPN-OVERLAY-PEERS
+    remote_as: '65118'
+    metadata:
+      peer: dc1-leaf5
+    description: dc1-leaf5_Loopback0
+  - ip_address: 192.168.101.20
+    peer_group: EVPN-OVERLAY-PEERS
+    remote_as: '65118'
+    metadata:
+      peer: dc1-leaf6
+    description: dc1-leaf6_Loopback0
   redistribute:
     connected:
       enabled: true
