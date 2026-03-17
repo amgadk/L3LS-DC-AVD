@@ -61,6 +61,26 @@ Mar 17 00:27:44 dc1-leaf4 PhyEthtool-1: %ETH-3-NETLINKFAIL: Cannot init netlink 
 ",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
 dc1-leaf4,VerifyMlagInterfaces,failure,MLAG status is not ok - Inactive Ports: 2 Partial Active Ports: 0,Verifies there are no inactive or active-partial MLAG ports.,MLAG
 dc1-leaf4,VerifyNTP,failure,NTP status mismatch - Expected: synchronised Actual: NTP is disabled.,Verifies if NTP is synchronised.,System
+dc1-leaf5,VerifyBGPPeerSession,failure,'show bgp neighbors vrf all' failed on dc1-leaf5: BGP inactive,Verifies the session state of BGP peers.,BGP
+dc1-leaf5,VerifyReachability,failure,Destination 192.168.103.72 (dc1-spine1_Ethernet5) from 192.168.103.73 in VRF default - Error when executing ping: 'ping: bind: Cannot assign requested address' - Destination 192.168.103.74 (dc1-spine2_Ethernet5) from 192.168.103.75 in VRF default - Error when executing ping: 'ping: bind: Cannot assign requested address',Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+dc1-leaf5,VerifyInterfacesStatus,failure,Interface: Loopback0 - Not configured - Interface: Loopback1 - Not configured - Interface: Port-Channel5 - Not configured - Interface: Vlan10 - Not configured - Interface: Vlan20 - Not configured - Interface: Vlan3009 - Not configured - Interface: Vlan3019 - Not configured - Interface: Vlan4093 - Not configured - Interface: Vlan4094 - Not configured - Interface: Vxlan1 - Not configured,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+dc1-leaf5,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
+Mar 17 00:28:11 dc1-leaf5 PhyEthtool-1: %ETH-3-NETLINKFAIL: Cannot init netlink stats cache : NETLINK Error Error fetching statistics  <extra parameters: '-31' >
+ Mar 17 00:28:17 dc1-leaf5 ProcMgr: %PROCMGR-3-SHUTDOWNREQUESTED: ProcMgr shutdown requested via SIGQUIT or SIGTERM to worker (PID=1484) -- Master ProcMgr (PID=1484) exiting.
+ 
+",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
+dc1-leaf5,VerifyNTP,failure,NTP status mismatch - Expected: synchronised Actual: NTP is disabled.,Verifies if NTP is synchronised.,System
+dc1-leaf6,VerifyBGPPeerSession,failure,'show bgp neighbors vrf all' failed on dc1-leaf6: BGP inactive,Verifies the session state of BGP peers.,BGP
+dc1-leaf6,VerifyReachability,failure,Destination 192.168.103.76 (dc1-spine1_Ethernet6) from 192.168.103.77 in VRF default - Error when executing ping: 'ping: bind: Cannot assign requested address' - Destination 192.168.103.78 (dc1-spine2_Ethernet6) from 192.168.103.79 in VRF default - Error when executing ping: 'ping: bind: Cannot assign requested address',Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+dc1-leaf6,VerifyInterfacesStatus,failure,Interface: Loopback0 - Not configured - Interface: Loopback1 - Not configured - Interface: Port-Channel5 - Not configured - Interface: Vlan10 - Not configured - Interface: Vlan20 - Not configured - Interface: Vlan3009 - Not configured - Interface: Vlan3019 - Not configured - Interface: Vlan4093 - Not configured - Interface: Vlan4094 - Not configured - Interface: Vxlan1 - Not configured,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+dc1-leaf6,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
+Mar 17 00:27:34 dc1-leaf6 PhyEthtool-1: %ETH-3-NETLINKFAIL: Cannot init netlink stats cache : NETLINK Error Error fetching statistics  <extra parameters: '-31' >
+ Mar 17 00:27:41 dc1-leaf6 ProcMgr: %PROCMGR-3-SHUTDOWNREQUESTED: ProcMgr shutdown requested via SIGQUIT or SIGTERM to worker (PID=1481) -- Master ProcMgr (PID=1481) exiting.
+ 
+",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
+dc1-leaf6,VerifyNTP,failure,NTP status mismatch - Expected: synchronised Actual: NTP is disabled.,Verifies if NTP is synchronised.,System
+dc1-spine1,VerifyBGPPeerSession,failure,Peer: 192.168.101.19 VRF: default - Not found - Peer: 192.168.101.20 VRF: default - Not found - Peer: 192.168.103.73 VRF: default - Not found - Peer: 192.168.103.77 VRF: default - Not found,Verifies the session state of BGP peers.,BGP
+dc1-spine1,VerifyReachability,failure,Destination 192.168.103.73 (dc1-leaf5_Ethernet1) from 192.168.103.72 in VRF default - Error when executing ping: 'ping: bind: Cannot assign requested address' - Destination 192.168.103.77 (dc1-leaf6_Ethernet1) from 192.168.103.76 in VRF default - Error when executing ping: 'ping: bind: Cannot assign requested address',Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
 dc1-spine1,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
 Mar 17 00:27:43 dc1-spine1 PhyEthtool-1: %ETH-3-NETLINKFAIL: Cannot init netlink stats cache : NETLINK Error Error fetching statistics  <extra parameters: '-31' >
  Mar 17 00:27:50 dc1-spine1 ProcMgr: %PROCMGR-3-SHUTDOWNREQUESTED: ProcMgr shutdown requested via SIGQUIT or SIGTERM to worker (PID=1481) -- Master ProcMgr (PID=1481) exiting.
@@ -69,6 +89,8 @@ Mar 17 00:27:43 dc1-spine1 PhyEthtool-1: %ETH-3-NETLINKFAIL: Cannot init netlink
  
 ",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
 dc1-spine1,VerifyNTP,failure,NTP status mismatch - Expected: synchronised Actual: NTP is disabled.,Verifies if NTP is synchronised.,System
+dc1-spine2,VerifyBGPPeerSession,failure,Peer: 192.168.101.19 VRF: default - Not found - Peer: 192.168.101.20 VRF: default - Not found - Peer: 192.168.103.75 VRF: default - Not found - Peer: 192.168.103.79 VRF: default - Not found,Verifies the session state of BGP peers.,BGP
+dc1-spine2,VerifyReachability,failure,Destination 192.168.103.75 (dc1-leaf5_Ethernet2) from 192.168.103.74 in VRF default - Error when executing ping: 'ping: bind: Cannot assign requested address' - Destination 192.168.103.79 (dc1-leaf6_Ethernet2) from 192.168.103.78 in VRF default - Error when executing ping: 'ping: bind: Cannot assign requested address',Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
 dc1-spine2,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
 Mar 17 00:27:34 dc1-spine2 PhyEthtool-1: %ETH-3-NETLINKFAIL: Cannot init netlink stats cache : NETLINK Error Error fetching statistics  <extra parameters: '-31' >
  Mar 17 00:27:41 dc1-spine2 ProcMgr: %PROCMGR-3-SHUTDOWNREQUESTED: ProcMgr shutdown requested via SIGQUIT or SIGTERM to worker (PID=1488) -- Master ProcMgr (PID=1488) exiting.
@@ -133,6 +155,14 @@ Mar 17 00:27:44 dc2-spine2 PhyEthtool-1: %ETH-3-NETLINKFAIL: Cannot init netlink
  
 ",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
 dc2-spine2,VerifyNTP,failure,NTP status mismatch - Expected: synchronised Actual: NTP is disabled.,Verifies if NTP is synchronised.,System
+dc1-leaf5,VerifyMlagConfigSanity,skipped,MLAG is disabled,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+dc1-leaf5,VerifyMlagInterfaces,skipped,MLAG is disabled,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+dc1-leaf5,VerifyMlagStatus,skipped,MLAG is disabled,Verifies the health status of the MLAG configuration.,MLAG
+dc1-leaf5,VerifyVxlanConfigSanity,skipped,VXLAN is not configured,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+dc1-leaf6,VerifyMlagConfigSanity,skipped,MLAG is disabled,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+dc1-leaf6,VerifyMlagInterfaces,skipped,MLAG is disabled,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+dc1-leaf6,VerifyMlagStatus,skipped,MLAG is disabled,Verifies the health status of the MLAG configuration.,MLAG
+dc1-leaf6,VerifyVxlanConfigSanity,skipped,VXLAN is not configured,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
 dc1-borderleaf1,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
 dc1-borderleaf1,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
 dc1-borderleaf1,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
@@ -265,11 +295,41 @@ dc1-leaf4,VerifyMaintenance,success,,Verifies that the device is not currently u
 dc1-leaf4,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
 dc1-leaf4,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
 dc1-leaf4,VerifyVxlanConfigSanity,success,,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
-dc1-spine1,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+dc1-leaf5,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+dc1-leaf5,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+dc1-leaf5,VerifyLLDPNeighbors,success,,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
+dc1-leaf5,VerifyIllegalLACP,success,,Verifies there are no illegal LACP packets in port channels.,Interfaces
+dc1-leaf5,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+dc1-leaf5,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+dc1-leaf5,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+dc1-leaf5,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+dc1-leaf5,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+dc1-leaf5,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+dc1-leaf5,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+dc1-leaf5,VerifyCoredump,success,,Verifies there are no core dump files.,System
+dc1-leaf5,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+dc1-leaf5,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+dc1-leaf5,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+dc1-leaf5,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+dc1-leaf6,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+dc1-leaf6,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+dc1-leaf6,VerifyLLDPNeighbors,success,,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
+dc1-leaf6,VerifyIllegalLACP,success,,Verifies there are no illegal LACP packets in port channels.,Interfaces
+dc1-leaf6,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+dc1-leaf6,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+dc1-leaf6,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+dc1-leaf6,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+dc1-leaf6,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+dc1-leaf6,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+dc1-leaf6,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+dc1-leaf6,VerifyCoredump,success,,Verifies there are no core dump files.,System
+dc1-leaf6,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+dc1-leaf6,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+dc1-leaf6,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+dc1-leaf6,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
 dc1-spine1,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
 dc1-spine1,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
 dc1-spine1,VerifyLLDPNeighbors,success,,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
-dc1-spine1,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
 dc1-spine1,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
 dc1-spine1,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
 dc1-spine1,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
@@ -283,11 +343,9 @@ dc1-spine1,VerifyFileSystemUtilization,success,,Verifies that no partition is ut
 dc1-spine1,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
 dc1-spine1,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
 dc1-spine1,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
-dc1-spine2,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
 dc1-spine2,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
 dc1-spine2,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
 dc1-spine2,VerifyLLDPNeighbors,success,,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
-dc1-spine2,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
 dc1-spine2,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
 dc1-spine2,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
 dc1-spine2,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
@@ -481,3 +539,5 @@ dc2-spine2,VerifyFileSystemUtilization,success,,Verifies that no partition is ut
 dc2-spine2,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
 dc2-spine2,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
 dc2-spine2,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+dc1-leaf5,VerifyPortChannels,unset,,Verifies there are no inactive ports in port channels.,Interfaces
+dc1-leaf6,VerifyPortChannels,unset,,Verifies there are no inactive ports in port channels.,Interfaces

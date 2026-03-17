@@ -58,6 +58,16 @@
             "neighbor_port": "Ethernet1"
           },
           {
+            "port": "Ethernet5",
+            "neighbor_device": "dc1-leaf5",
+            "neighbor_port": "Ethernet1"
+          },
+          {
+            "port": "Ethernet6",
+            "neighbor_device": "dc1-leaf6",
+            "neighbor_port": "Ethernet1"
+          },
+          {
             "port": "Ethernet7",
             "neighbor_device": "dc1-borderleaf1",
             "neighbor_port": "Ethernet1"
@@ -122,6 +132,20 @@
             "destination": "192.168.103.69",
             "source": "192.168.103.68",
             "description": "dc1-borderleaf2_Ethernet1",
+            "vrf": "default",
+            "repeat": 1
+          },
+          {
+            "destination": "192.168.103.73",
+            "source": "192.168.103.72",
+            "description": "dc1-leaf5_Ethernet1",
+            "vrf": "default",
+            "repeat": 1
+          },
+          {
+            "destination": "192.168.103.77",
+            "source": "192.168.103.76",
+            "description": "dc1-leaf6_Ethernet1",
             "vrf": "default",
             "repeat": 1
           }
@@ -206,6 +230,14 @@
             "status": "up"
           },
           {
+            "name": "Ethernet5",
+            "status": "up"
+          },
+          {
+            "name": "Ethernet6",
+            "status": "up"
+          },
+          {
             "name": "Ethernet7",
             "status": "up"
           },
@@ -272,6 +304,14 @@
             "vrf": "default"
           },
           {
+            "peer_address": "192.168.101.19",
+            "vrf": "default"
+          },
+          {
+            "peer_address": "192.168.101.20",
+            "vrf": "default"
+          },
+          {
             "peer_address": "192.168.103.49",
             "vrf": "default"
           },
@@ -293,6 +333,14 @@
           },
           {
             "peer_address": "192.168.103.69",
+            "vrf": "default"
+          },
+          {
+            "peer_address": "192.168.103.73",
+            "vrf": "default"
+          },
+          {
+            "peer_address": "192.168.103.77",
             "vrf": "default"
           }
         ]
