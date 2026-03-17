@@ -4,7 +4,6 @@
 
 - [Management](#management)
   - [Management Interfaces](#management-interfaces)
-  - [Management API HTTP](#management-api-http)
 - [Authentication](#authentication)
   - [Enable Password](#enable-password)
 - [Spanning Tree](#spanning-tree)
@@ -59,32 +58,6 @@ interface Management1
    ip address 192.168.0.211/24
 ```
 
-### Management API HTTP
-
-#### Management API HTTP Summary
-
-| HTTP | HTTPS | UNIX-Socket | Default Services |
-| ---- | ----- | ----------- | ---------------- |
-| False | True | - | - |
-
-#### Management API VRF Access
-
-| VRF Name | IPv4 ACL | IPv6 ACL |
-| -------- | -------- | -------- |
-| default | - | - |
-
-#### Management API HTTP Device Configuration
-
-```eos
-!
-management api http-commands
-   protocol https
-   no shutdown
-   !
-   vrf default
-      no shutdown
-```
-
 ## Authentication
 
 ### Enable Password
@@ -109,7 +82,7 @@ spanning-tree mode none
 ### Internal VLAN Allocation Policy Summary
 
 | Policy Allocation | Range Beginning | Range Ending |
-| ------------------| --------------- | ------------ |
+| ----------------- | --------------- | ------------ |
 | ascending | 1006 | 1199 |
 
 ### Internal VLAN Allocation Policy Device Configuration
@@ -134,8 +107,8 @@ vlan internal order ascending range 1006 1199
 
 ##### IPv4
 
-| Interface | Description | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
-| --------- | ----------- | ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
+| Interface | Description | Channel Group | IP Address | VRF | MTU | Shutdown | ACL In | ACL Out |
+| --------- | ----------- | ------------- | ---------- | --- | --- | -------- | ------ | ------- |
 | Ethernet1 | P2P_dc2-leaf1_Ethernet1 | - | 192.168.203.88/31 | default | 1550 | False | - | - |
 | Ethernet2 | P2P_dc2-leaf2_Ethernet1 | - | 192.168.203.92/31 | default | 1550 | False | - | - |
 | Ethernet3 | P2P_dc2-leaf3_Ethernet1 | - | 192.168.203.96/31 | default | 1550 | False | - | - |
@@ -279,7 +252,7 @@ ASN Notation: asplain
 | BGP Tuning |
 | ---------- |
 | no bgp default ipv4-unicast |
-| maximum-paths 4 ecmp 4 |
+| maximum-paths 4 |
 
 #### Router BGP Peer Groups
 
@@ -301,7 +274,7 @@ ASN Notation: asplain
 | -------- | ----- |
 | Address Family | ipv4 |
 | Send community | all |
-| Maximum routes | 12000 |
+| Maximum routes | 256000 |
 
 #### BGP Neighbors
 
@@ -335,7 +308,7 @@ ASN Notation: asplain
 router bgp 65002
    router-id 192.168.101.21
    no bgp default ipv4-unicast
-   maximum-paths 4 ecmp 4
+   maximum-paths 4
    neighbor EVPN-OVERLAY-PEERS peer group
    neighbor EVPN-OVERLAY-PEERS next-hop-unchanged
    neighbor EVPN-OVERLAY-PEERS update-source Loopback0
@@ -345,7 +318,7 @@ router bgp 65002
    neighbor EVPN-OVERLAY-PEERS maximum-routes 0
    neighbor IPv4-UNDERLAY-PEERS peer group
    neighbor IPv4-UNDERLAY-PEERS send-community
-   neighbor IPv4-UNDERLAY-PEERS maximum-routes 12000
+   neighbor IPv4-UNDERLAY-PEERS maximum-routes 256000
    neighbor 192.168.101.23 peer group EVPN-OVERLAY-PEERS
    neighbor 192.168.101.23 remote-as 65222
    neighbor 192.168.101.23 description dc2-leaf1_Loopback0

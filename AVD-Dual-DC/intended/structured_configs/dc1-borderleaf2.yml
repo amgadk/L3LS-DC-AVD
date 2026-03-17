@@ -10,26 +10,29 @@ ethernet_interfaces:
   channel_group:
     id: 5
     mode: active
-  peer: dc1-borderleaf1
-  peer_interface: Ethernet5
-  peer_type: mlag_peer
+  metadata:
+    peer: dc1-borderleaf1
+    peer_interface: Ethernet5
+    peer_type: mlag_peer
 - name: Ethernet6
   description: MLAG_dc1-borderleaf1_Ethernet6
   shutdown: false
   channel_group:
     id: 5
     mode: active
-  peer: dc1-borderleaf1
-  peer_interface: Ethernet6
-  peer_type: mlag_peer
+  metadata:
+    peer: dc1-borderleaf1
+    peer_interface: Ethernet6
+    peer_type: mlag_peer
 - name: Ethernet1
   description: P2P_dc1-spine1_Ethernet8
   shutdown: false
   mtu: 1550
   ip_address: 192.168.103.69/31
-  peer: dc1-spine1
-  peer_interface: Ethernet8
-  peer_type: spine
+  metadata:
+    peer: dc1-spine1
+    peer_interface: Ethernet8
+    peer_type: spine
   switchport:
     enabled: false
 - name: Ethernet2
@@ -37,9 +40,10 @@ ethernet_interfaces:
   shutdown: false
   mtu: 1550
   ip_address: 192.168.103.71/31
-  peer: dc1-spine2
-  peer_interface: Ethernet8
-  peer_type: spine
+  metadata:
+    peer: dc1-spine2
+    peer_interface: Ethernet8
+    peer_type: spine
   switchport:
     enabled: false
 - name: Ethernet20
@@ -47,9 +51,10 @@ ethernet_interfaces:
   shutdown: false
   mtu: 1550
   ip_address: 172.100.101.146/31
-  peer: dc2-borderleaf2
-  peer_interface: Ethernet20
-  peer_type: l3leaf
+  metadata:
+    peer: dc2-borderleaf2
+    peer_interface: Ethernet20
+    peer_type: l3leaf
   switchport:
     enabled: false
 hostname: dc1-borderleaf2
@@ -66,10 +71,6 @@ loopback_interfaces:
   description: VXLAN_TUNNEL_SOURCE
   shutdown: false
   ip_address: 192.168.102.17/32
-management_api_http:
-  enable_https: true
-  enable_vrfs:
-  - name: default
 management_interfaces:
 - name: Management1
   description: OOB_MANAGEMENT
@@ -82,6 +83,8 @@ metadata:
   is_deployed: true
   platform: vEOS-lab
   fabric_name: FABRIC
+  validate_hardware:
+    enabled: false
 mlag_configuration:
   domain_id: borderleafs
   local_interface: Vlan4094
@@ -142,65 +145,82 @@ router_bgp:
   router_id: 192.168.101.18
   maximum_paths:
     paths: 4
-    ecmp: 4
   bgp:
     default:
       ipv4_unicast: false
   peer_groups:
   - name: MLAG-IPv4-UNDERLAY-PEER
-    type: ipv4
+    metadata:
+      type: ipv4
     remote_as: '65150'
     description: dc1-borderleaf1
     next_hop_self: true
     send_community: all
-    maximum_routes: 12000
+    maximum_routes: 256000
     route_map_in: RM-MLAG-PEER-IN
   - name: IPv4-UNDERLAY-PEERS
-    type: ipv4
+    metadata:
+      type: ipv4
     send_community: all
-    maximum_routes: 12000
+    maximum_routes: 256000
   - name: EVPN-OVERLAY-PEERS
-    type: evpn
+    metadata:
+      type: evpn
     update_source: Loopback0
     bfd: true
     ebgp_multihop: 3
     send_community: all
     maximum_routes: 0
+  - name: EVPN-OVERLAY-CORE
+    metadata:
+      type: evpn
+    update_source: Loopback0
+    bfd: true
+    ebgp_multihop: 15
+    send_community: all
+    maximum_routes: 0
   neighbors:
   - ip_address: 10.255.251.32
     peer_group: MLAG-IPv4-UNDERLAY-PEER
-    peer: dc1-borderleaf1
+    metadata:
+      peer: dc1-borderleaf1
     description: dc1-borderleaf1_Vlan4093
   - ip_address: 192.168.103.68
     peer_group: IPv4-UNDERLAY-PEERS
     remote_as: '65011'
-    peer: dc1-spine1
+    metadata:
+      peer: dc1-spine1
     description: dc1-spine1_Ethernet8
   - ip_address: 192.168.103.70
     peer_group: IPv4-UNDERLAY-PEERS
     remote_as: '65011'
-    peer: dc1-spine2
+    metadata:
+      peer: dc1-spine2
     description: dc1-spine2_Ethernet8
   - ip_address: 192.168.101.11
     peer_group: EVPN-OVERLAY-PEERS
     remote_as: '65011'
-    peer: dc1-spine1
+    metadata:
+      peer: dc1-spine1
     description: dc1-spine1_Loopback0
   - ip_address: 192.168.101.12
     peer_group: EVPN-OVERLAY-PEERS
     remote_as: '65011'
-    peer: dc1-spine2
+    metadata:
+      peer: dc1-spine2
     description: dc1-spine2_Loopback0
   - ip_address: 192.168.101.28
     peer_group: EVPN-OVERLAY-CORE
     remote_as: '65250'
-    peer: dc2-borderleaf2
+    metadata:
+      peer: dc2-borderleaf2
     description: dc2-borderleaf2_Loopback0
   - ip_address: 172.100.101.147
     peer_group: IPv4-UNDERLAY-PEERS
     remote_as: '65210'
     local_as: '65110'
-    peer: dc2-borderleaf2
+    metadata:
+      peer: dc2-borderleaf2
     description: dc2-borderleaf2
   redistribute:
     connected:
@@ -208,7 +228,9 @@ router_bgp:
       route_map: RM-CONN-2-BGP
   vlans:
   - id: 10
-    tenant: ACME
+    metadata:
+      tenants:
+      - ACME
     rd: 192.168.101.18:10010
     route_targets:
       both:
@@ -216,7 +238,9 @@ router_bgp:
     redistribute_routes:
     - learned
   - id: 20
-    tenant: ACME
+    metadata:
+      tenants:
+      - ACME
     rd: 192.168.101.18:10020
     route_targets:
       both:
@@ -227,6 +251,9 @@ router_bgp:
     peer_groups:
     - name: EVPN-OVERLAY-PEERS
       activate: true
+    - name: EVPN-OVERLAY-CORE
+      activate: true
+      domain_remote: true
   address_family_ipv4:
     peer_groups:
     - name: MLAG-IPv4-UNDERLAY-PEER
@@ -234,6 +261,8 @@ router_bgp:
     - name: IPv4-UNDERLAY-PEERS
       activate: true
     - name: EVPN-OVERLAY-PEERS
+      activate: false
+    - name: EVPN-OVERLAY-CORE
       activate: false
   vrfs:
   - name: VRF_A
@@ -305,29 +334,37 @@ vlan_interfaces:
   shutdown: false
   vrf: VRF_A
   ip_address_virtual: 10.1.10.1/24
-  tenant: ACME
+  metadata:
+    tenants:
+    - ACME
 - name: Vlan3009
   description: MLAG_L3_VRF_VRF_A
   shutdown: false
   vrf: VRF_A
   ip_address: 10.255.251.33/31
   mtu: 1550
-  tenant: ACME
-  type: underlay_peering
+  metadata:
+    tenants:
+    - ACME
+    type: underlay_peering
 - name: Vlan20
   description: Internal
   shutdown: false
   vrf: VRF_B
   ip_address_virtual: 10.1.20.1/24
-  tenant: ACME
+  metadata:
+    tenants:
+    - ACME
 - name: Vlan3019
   description: MLAG_L3_VRF_VRF_B
   shutdown: false
   vrf: VRF_B
   ip_address: 10.255.251.33/31
   mtu: 1550
-  tenant: ACME
-  type: underlay_peering
+  metadata:
+    tenants:
+    - ACME
+    type: underlay_peering
 vlan_internal_order:
   allocation: ascending
   range:
@@ -338,37 +375,53 @@ vlans:
   name: MLAG_L3
   trunk_groups:
   - MLAG
-  tenant: system
+  metadata:
+    tenants:
+    - system
 - id: 4094
   name: MLAG
   trunk_groups:
   - MLAG
-  tenant: system
+  metadata:
+    tenants:
+    - system
 - id: 10
   name: DMZ
-  tenant: ACME
+  metadata:
+    tenants:
+    - ACME
 - id: 3009
   name: MLAG_L3_VRF_VRF_A
   trunk_groups:
   - MLAG
-  tenant: ACME
+  metadata:
+    tenants:
+    - ACME
 - id: 20
   name: Internal
-  tenant: ACME
+  metadata:
+    tenants:
+    - ACME
 - id: 3019
   name: MLAG_L3_VRF_VRF_B
   trunk_groups:
   - MLAG
-  tenant: ACME
+  metadata:
+    tenants:
+    - ACME
 vrfs:
 - name: default
   ip_routing: false
 - name: VRF_A
   ip_routing: true
-  tenant: ACME
+  metadata:
+    tenants:
+    - ACME
 - name: VRF_B
   ip_routing: true
-  tenant: ACME
+  metadata:
+    tenants:
+    - ACME
 vxlan_interface:
   vxlan1:
     description: dc1-borderleaf2_VTEP

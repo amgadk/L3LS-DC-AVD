@@ -46,3 +46,15 @@ servers:
         port_channel:
           description: PortChannel host4
           mode: active
+
+  # - name: host5
+  #   adapters:
+  #     - endpoint_ports: [ Ethernet1, Ethernet2 ]
+  #       switch_ports: [ Ethernet9, Ethernet9 ]
+  #       switches: [ dc1-leaf5, dc1-leaf6 ]
+  #       vlans: 10
+  #       mode: access
+  #       spanning_tree_portfast: edge
+  #       port_channel:
+  #         description: PortChannel host5
+  #         mode: active

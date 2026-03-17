@@ -4,7 +4,6 @@
 
 - [Management](#management)
   - [Management Interfaces](#management-interfaces)
-  - [Management API HTTP](#management-api-http)
 - [Authentication](#authentication)
   - [Enable Password](#enable-password)
 - [MLAG](#mlag)
@@ -71,32 +70,6 @@ interface Management1
    ip address 192.168.0.102/24
 ```
 
-### Management API HTTP
-
-#### Management API HTTP Summary
-
-| HTTP | HTTPS | UNIX-Socket | Default Services |
-| ---- | ----- | ----------- | ---------------- |
-| False | True | - | - |
-
-#### Management API VRF Access
-
-| VRF Name | IPv4 ACL | IPv6 ACL |
-| -------- | -------- | -------- |
-| default | - | - |
-
-#### Management API HTTP Device Configuration
-
-```eos
-!
-management api http-commands
-   protocol https
-   no shutdown
-   !
-   vrf default
-      no shutdown
-```
-
 ## Authentication
 
 ### Enable Password
@@ -156,7 +129,7 @@ spanning-tree mst 0 priority 16384
 ### Internal VLAN Allocation Policy Summary
 
 | Policy Allocation | Range Beginning | Range Ending |
-| ------------------| --------------- | ------------ |
+| ----------------- | --------------- | ------------ |
 | ascending | 1006 | 1199 |
 
 ### Internal VLAN Allocation Policy Device Configuration
@@ -225,8 +198,8 @@ vlan 4094
 
 ##### IPv4
 
-| Interface | Description | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
-| --------- | ----------- | ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
+| Interface | Description | Channel Group | IP Address | VRF | MTU | Shutdown | ACL In | ACL Out |
+| --------- | ----------- | ------------- | ---------- | --- | --- | -------- | ------ | ------- |
 | Ethernet1 | P2P_dc1-spine1_Ethernet2 | - | 192.168.103.53/31 | default | 1550 | False | - | - |
 | Ethernet2 | P2P_dc1-spine2_Ethernet2 | - | 192.168.103.55/31 | default | 1550 | False | - | - |
 
@@ -276,7 +249,7 @@ interface Ethernet9
 ##### L2
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
-| --------- | ----------- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
+| --------- | ----------- | ---- | ----- | ----------- | ----------- | --------------------- | ------------------ | ------- | -------- |
 | Port-Channel5 | MLAG_dc1-leaf1_Port-Channel5 | trunk | - | - | MLAG | - | - | - | - |
 | Port-Channel7 | PortChannel host1 | access | 10 | - | - | - | - | 7 | - |
 | Port-Channel9 | PortChannel host2 | access | 10 | - | - | - | - | 9 | - |
@@ -348,8 +321,8 @@ interface Loopback1
 
 #### VLAN Interfaces Summary
 
-| Interface | Description | VRF |  MTU | Shutdown |
-| --------- | ----------- | --- | ---- | -------- |
+| Interface | Description | VRF | MTU | Shutdown |
+| --------- | ----------- | --- | --- | -------- |
 | Vlan10 | DMZ | VRF_A | - | False |
 | Vlan20 | Internal | VRF_B | - | False |
 | Vlan3009 | MLAG_L3_VRF_VRF_A | VRF_A | 1550 | False |
@@ -361,12 +334,12 @@ interface Loopback1
 
 | Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | ACL In | ACL Out |
 | --------- | --- | ---------- | ------------------ | ------------------------- | ------ | ------- |
-| Vlan10 |  VRF_A  |  -  |  10.1.10.1/24  |  -  |  -  |  -  |
-| Vlan20 |  VRF_B  |  -  |  10.1.20.1/24  |  -  |  -  |  -  |
-| Vlan3009 |  VRF_A  |  10.255.251.25/31  |  -  |  -  |  -  |  -  |
-| Vlan3019 |  VRF_B  |  10.255.251.25/31  |  -  |  -  |  -  |  -  |
-| Vlan4093 |  default  |  10.255.251.25/31  |  -  |  -  |  -  |  -  |
-| Vlan4094 |  default  |  10.255.252.25/31  |  -  |  -  |  -  |  -  |
+| Vlan10 | VRF_A | - | 10.1.10.1/24 | - | - | - |
+| Vlan20 | VRF_B | - | 10.1.20.1/24 | - | - | - |
+| Vlan3009 | VRF_A | 10.255.251.25/31 | - | - | - | - |
+| Vlan3019 | VRF_B | 10.255.251.25/31 | - | - | - | - |
+| Vlan4093 | default | 10.255.251.25/31 | - | - | - | - |
+| Vlan4094 | default | 10.255.252.25/31 | - | - | - | - |
 
 #### VLAN Interfaces Device Configuration
 
@@ -533,7 +506,7 @@ ASN Notation: asplain
 | BGP Tuning |
 | ---------- |
 | no bgp default ipv4-unicast |
-| maximum-paths 4 ecmp 4 |
+| maximum-paths 4 |
 
 #### Router BGP Peer Groups
 
@@ -554,7 +527,7 @@ ASN Notation: asplain
 | -------- | ----- |
 | Address Family | ipv4 |
 | Send community | all |
-| Maximum routes | 12000 |
+| Maximum routes | 256000 |
 
 ##### MLAG-IPv4-UNDERLAY-PEER
 
@@ -564,7 +537,7 @@ ASN Notation: asplain
 | Remote AS | 65112 |
 | Next-hop self | True |
 | Send community | all |
-| Maximum routes | 12000 |
+| Maximum routes | 256000 |
 
 #### BGP Neighbors
 
@@ -607,7 +580,7 @@ ASN Notation: asplain
 router bgp 65112
    router-id 192.168.101.14
    no bgp default ipv4-unicast
-   maximum-paths 4 ecmp 4
+   maximum-paths 4
    neighbor EVPN-OVERLAY-PEERS peer group
    neighbor EVPN-OVERLAY-PEERS update-source Loopback0
    neighbor EVPN-OVERLAY-PEERS bfd
@@ -616,14 +589,14 @@ router bgp 65112
    neighbor EVPN-OVERLAY-PEERS maximum-routes 0
    neighbor IPv4-UNDERLAY-PEERS peer group
    neighbor IPv4-UNDERLAY-PEERS send-community
-   neighbor IPv4-UNDERLAY-PEERS maximum-routes 12000
+   neighbor IPv4-UNDERLAY-PEERS maximum-routes 256000
    neighbor MLAG-IPv4-UNDERLAY-PEER peer group
    neighbor MLAG-IPv4-UNDERLAY-PEER remote-as 65112
    neighbor MLAG-IPv4-UNDERLAY-PEER next-hop-self
    neighbor MLAG-IPv4-UNDERLAY-PEER description dc1-leaf1
    neighbor MLAG-IPv4-UNDERLAY-PEER route-map RM-MLAG-PEER-IN in
    neighbor MLAG-IPv4-UNDERLAY-PEER send-community
-   neighbor MLAG-IPv4-UNDERLAY-PEER maximum-routes 12000
+   neighbor MLAG-IPv4-UNDERLAY-PEER maximum-routes 256000
    neighbor 10.255.251.24 peer group MLAG-IPv4-UNDERLAY-PEER
    neighbor 10.255.251.24 description dc1-leaf1_Vlan4093
    neighbor 192.168.101.11 peer group EVPN-OVERLAY-PEERS
